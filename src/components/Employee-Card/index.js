@@ -6,8 +6,8 @@ function EmployeeCard(props) {
     <div className="card">
       <div className="content">
         <ul>
-          <li>
-            <strong>{props.firstName} {props.lastName}</strong>
+          <li className="card-title">
+            <strong>{props.firstName}<br />{props.lastName}</strong>
           </li>
           <li>
             <strong>Title: </strong>{props.title}
