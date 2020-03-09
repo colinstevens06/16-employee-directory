@@ -10,17 +10,13 @@ function FilterButton(props) {
   // console.log(props.list)
   // console.log(props.filterType)
 
-  const list = props.list
-  console.log("list")
-  console.log(list)
 
   return (
     <form>
-      <div className="form-group">
-
-
-
-      </div>
+      <div
+        className="btn btn-primary"
+        onClick={() => props.departmentFilter("Finance")}
+      >Show Only Finance</div>
     </form>
   )
 }

@@ -11,14 +11,21 @@ class App extends Component {
   state = {
     employees: employees,
     toggleFilter: "",
+    filterObject: employees,
     toggleSort: ""
   }
 
 
-  departmentFilter = (department) => {
-    if (department !== "all") {
-      const employees = this.state.employees.filter(employee => employee.department === department)
-      this.setState({ employees })
+  departmentFilter = dept => {
+
+
+    if (dept !== "all") {
+
+
+      const employees = this.state.employees.filter(employee => employee.department === dept)
+
+
+      this.setState({ ...this.state, filterObject: employees })
     } else {
       this.setState({ employees })
     }
@@ -54,11 +61,14 @@ class App extends Component {
       <div className="App">
         <Wrapper>
           <Button-Wrapper>
-            <FilterButton list={departmentsList} filterType={this.departmentFilter} />
+            <FilterButton
+              list={departmentsList}
+              departmentFilter={this.departmentFilter}
+            />
             {/* <FilterButton /> */}
           </Button-Wrapper>
           <TableWrapper>
-            {this.state.employees.map(employee => (
+            {this.state.filterObject.map(employee => (
               <EmployeeCard
                 key={employee.id}
                 firstName={employee.firstName}
