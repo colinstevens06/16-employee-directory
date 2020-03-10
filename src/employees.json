@@ -31,7 +31,7 @@
     "firstName": "Francesco",
     "lastName": "Mazziotti",
     "department": "Finance",
-    "title": "President",
+    "title": "CFO",
     "birthday": "April 13",
     "salary": 80000
   },
@@ -70,5 +70,14 @@
     "title": "Junior Accountant",
     "birthday": "August 15",
     "salary": 40000
+  },
+  {
+    "id": 9,
+    "firstName": "Cameron",
+    "lastName": "Soleimani",
+    "department": "IT",
+    "title": "CIO",
+    "birthday": "August 15",
+    "salary": 80000
   }
 ]
