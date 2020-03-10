@@ -42,6 +42,31 @@ class App extends Component {
         })
         this.setState({ filterObject: employees })
         break
+      case "Salary":
+        if (employees[0].salary < employees[employees.length - 1].salary) {
+          employees.sort(function (a, b) {
+            if (a.salary < b.salary) {
+              return 1
+            } else if (b.salary < a.salary) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          this.setState({ filterObject: employees })
+        } else {
+          employees.sort(function (a, b) {
+            if (b.salary < a.salary) {
+              return 1
+            } else if (a.salary < b.salary) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          this.setState({ filterObject: employees })
+        }
+        break
       default:
         employees.sort(function (a, b) {
           if (a.id < b.id) {
@@ -83,7 +108,7 @@ class App extends Component {
             <h1 style={{ textAlign: "center", marginTop: 25, marginBottom: 25 }}>Employees: At a Glance</h1>
 
             <div className="row">
-              <div className="col-sm-8" style={{ borderRight: "1px solid #000000" }}>
+              <div className="col-sm-6" style={{ borderRight: "1px solid #000000" }}>
                 <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
                 <FilterButtonWrapper>
                   <FilterButton
@@ -108,7 +133,7 @@ class App extends Component {
                   />
                 </FilterButtonWrapper>
               </div>
-              <div className="col-sm-4">
+              <div className="col-sm-6">
                 <h2 style={{ textAlign: "center" }}>Sort</h2>
                 <FilterButtonWrapper>
                   <FilterButton
@@ -120,6 +145,11 @@ class App extends Component {
                     click={this.nameSort}
                     btnText="Sort by Last Name"
                     value="lastName"
+                  />
+                  <FilterButton
+                    click={this.nameSort}
+                    btnText="Sort by Salary"
+                    value="Salary"
                   />
                 </FilterButtonWrapper>
 
