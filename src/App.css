@@ -45,3 +45,9 @@ html, body {
   font-family: 'Nunito Sans', sans-serif;
 
 }
+
+@media only screen and (max-width: 415px) {
+  .main-header-container {
+    margin-bottom: 35px;
+  }
+}
