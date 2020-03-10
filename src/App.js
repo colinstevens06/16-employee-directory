@@ -30,16 +30,32 @@ class App extends Component {
 
     switch (input) {
       case "lastName":
-        employees.sort(function (a, b) {
-          if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
-            return -1
-          } else if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
-            return 1
-          } else {
-            return 0
-          }
-        })
-        this.setState({ filterObject: employees })
+        if (employees[0].lastName.toLowerCase() < employees[employees.length - 1].lastName.toLowerCase()) {
+          employees.sort(function (a, b) {
+            if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+              return 1
+            } else if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          this.setState({ filterObject: employees })
+
+        } else {
+          employees.sort(function (a, b) {
+            if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
+              return 1
+            } else if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          this.setState({ filterObject: employees })
+        }
+
+
         break
       case "Salary":
         // setting it up so you can switch the sort from large to small and small to large
