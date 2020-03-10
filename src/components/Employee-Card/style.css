@@ -1,7 +1,9 @@
 .card {
-  background-image: linear-gradient(to bottom right, rgb(57, 63, 73), rgb(27, 42, 73));
+  /* background-image: linear-gradient(to bottom right, rgb(57, 63, 73), rgb(27, 42, 73)); */
+  background-image: radial-gradient(farthest-corner at 10px 10px, rgb(86, 115, 165), rgb(27, 42, 73));
   color: #f3f3f3;
   box-shadow: 0px 30px 60px 0px rgba(0, 0, 0, .5);
+  border: none;
   border-radius: 5px;
   height: 275px;
   margin: 1rem;
