@@ -29,6 +29,7 @@ class App extends Component {
     const employees = this.state.filterObject;
 
     switch (input) {
+      // ======== SORT BY LAST NAME ========
       case "lastName":
         if (employees[0].lastName.toLowerCase() < employees[employees.length - 1].lastName.toLowerCase()) {
           employees.sort(function (a, b) {
@@ -41,7 +42,6 @@ class App extends Component {
             }
           })
           this.setState({ filterObject: employees })
-
         } else {
           employees.sort(function (a, b) {
             if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
@@ -54,9 +54,8 @@ class App extends Component {
           })
           this.setState({ filterObject: employees })
         }
-
-
         break
+      // ======== SORT BY SALARY ========
       case "Salary":
         // setting it up so you can switch the sort from large to small and small to large
         if (employees[0].salary < employees[employees.length - 1].salary) {
@@ -83,6 +82,7 @@ class App extends Component {
           this.setState({ filterObject: employees })
         }
         break
+      // ======== RESET SORT ========
       default:
         employees.sort(function (a, b) {
           if (a.id < b.id) {
@@ -102,62 +102,59 @@ class App extends Component {
       <div className="App">
         <Wrapper>
           <div className="container">
-
-            <h1 style={{ textAlign: "center", marginTop: 25, marginBottom: 25 }}>Employees: At a Glance</h1>
-
             <div className="row">
               <div className="col-sm-6" style={{ borderRight: "1px solid #000000" }}>
-                <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
+                <div className="main-header-container">
+                  <h1 className="main-header">Employees: At a Glance</h1>
+
+                </div>
+              </div>
+              <div className="col-sm-3" style={{ borderRight: "1px solid #000000" }}>
+                <h2 style={{ textAlign: "center" }} className="filter-header">Filter By Department</h2>
                 <FilterButtonWrapper>
                   <FilterButton
                     click={this.departmentFilter}
                     value="all"
-                    btnText="Show Everyone"
+                    btnText="Everyone"
                   />
                   <FilterButton
                     click={this.departmentFilter}
                     value="Finance"
-                    btnText="Show Only Finance"
+                    btnText="Finance"
                   />
                   <FilterButton
                     click={this.departmentFilter}
                     value="C-Suite"
-                    btnText="Show Only C-Suite"
+                    btnText="C-Suite"
                   />
                   <FilterButton
                     click={this.departmentFilter}
                     value="HR"
-                    btnText="Show Only HR"
+                    btnText="HR"
                   />
                 </FilterButtonWrapper>
               </div>
-              <div className="col-sm-6">
-                <h2 style={{ textAlign: "center" }}>Sort</h2>
+              <div className="col-sm-3">
+                <h2 style={{ textAlign: "center" }} className="filter-header">Sort</h2>
                 <FilterButtonWrapper>
                   <FilterButton
                     click={this.nameSort}
-                    btnText="Reset Sort"
+                    btnText="Reset"
                     value="showAll"
                   />
                   <FilterButton
                     click={this.nameSort}
-                    btnText="Sort by Last Name"
+                    btnText="Last Name"
                     value="lastName"
                   />
                   <FilterButton
                     click={this.nameSort}
-                    btnText="Sort by Salary"
+                    btnText="Salary"
                     value="Salary"
                   />
                 </FilterButtonWrapper>
-
-
               </div>
-
-
             </div>
-
-
 
             <TableWrapper>
               {this.state.filterObject.map(employee => (
@@ -170,7 +167,6 @@ class App extends Component {
                   birthday={employee.birthday}
                   salary={employee.salary}
                 />
-
               ))}
             </TableWrapper>
           </div>

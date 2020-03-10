@@ -13,6 +13,18 @@ html, body {
   background-color: #b8b8b8;
 }
 
+.main-header-container {
+  margin: auto;
+  height: 100%;
+  display: flex;
+}
+
+.main-header {
+  text-align: center;
+  margin: auto;
+  /* display: flex; */
+}
+
 .btn:hover {
   cursor: pointer;
 }
@@ -24,4 +36,8 @@ html, body {
   margin-top: 15px;
   margin-bottom: 15px;
   height: 100%
+}
+
+.filter-header {
+  font-size: 22px;
 }
