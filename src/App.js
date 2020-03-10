@@ -29,30 +29,31 @@ class App extends Component {
   nameSort = (input) => {
     const employees = this.state.filterObject;
 
-    if (input === "lastName") {
-      const sortedEmployees = employees.sort(function (a, b) {
-        if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
-          return -1
-        } else if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
-          return 1
-        } else {
-          return 0
-        }
-      })
-      this.setState({ filterObject: sortedEmployees })
-    } else {
-      const sortedEmployees = employees.sort(function (a, b) {
-        if (a.id < b.id) {
-          return -1
-        } else if (b.id < a.id) {
-          return 1
-        } else {
-          return 0
-        }
-      })
-      this.setState({ filterObject: sortedEmployees })
+    switch (input) {
+      case "lastName":
+        employees.sort(function (a, b) {
+          if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+            return -1
+          } else if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
+            return 1
+          } else {
+            return 0
+          }
+        })
+        this.setState({ filterObject: employees })
+        break
+      default:
+        employees.sort(function (a, b) {
+          if (a.id < b.id) {
+            return -1
+          } else if (b.id < a.id) {
+            return 1
+          } else {
+            return 0
+          }
+        })
+        this.setState({ filterObject: employees })
     }
-
   }
 
   onlyUnique = (value, index, self) => {
@@ -66,79 +67,77 @@ class App extends Component {
     });
 
     let filteredDepartments = departments.filter(this.onlyUnique())
-    console.log("filteredDepartments")
-    console.log(filteredDepartments)
+
     return filteredDepartments;
 
   }
 
   render() {
-    console.log(employees)
-    console.log(employees[0].department)
-
-    let departmentsList = this.departmentList
-    console.log(departmentsList)
+    // let departmentsList = this.departmentList
 
     return (
       <div className="App">
         <Wrapper>
-          <h2 style={{ textAlign: "center" }}>Sort</h2>
-          <FilterButtonWrapper>
-            <FilterButton
-              click={this.nameSort}
-              btnText="Reset Sort"
-              value="showAll"
-            />
-            <FilterButton
-              click={this.nameSort}
-              btnText="Sort by Last Name"
-              value="lastName"
-            />
-          </FilterButtonWrapper>
+          <div className="container">
 
-
-          <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
-          <FilterButtonWrapper>
-            <FilterButton
-              list={departmentsList}
-              click={this.departmentFilter}
-              value="all"
-              btnText="Show Everyone"
-            />
-            <FilterButton
-              list={departmentsList}
-              click={this.departmentFilter}
-              value="Finance"
-              btnText="Show Only Finance"
-            />
-            <FilterButton
-              list={departmentsList}
-              click={this.departmentFilter}
-              value="C-Suite"
-              btnText="Show Only C-Suite"
-            />
-            <FilterButton
-              list={departmentsList}
-              click={this.departmentFilter}
-              value="HR"
-              btnText="Show Only HR"
-            />
-            {/* <FilterButton /> */}
-          </FilterButtonWrapper>
-          <TableWrapper>
-            {this.state.filterObject.map(employee => (
-              <EmployeeCard
-                key={employee.id}
-                firstName={employee.firstName}
-                lastName={employee.lastName}
-                department={employee.department}
-                title={employee.title}
-                birthday={employee.birthday}
-                salary={employee.salary}
+            <h1 style={{ textAlign: "center", marginTop: 25, marginBottom: 25 }}>Employees: At a Glance</h1>
+            <h2 style={{ textAlign: "center" }}>Sort</h2>
+            <FilterButtonWrapper>
+              <FilterButton
+                click={this.nameSort}
+                btnText="Reset Sort"
+                value="showAll"
               />
+              <FilterButton
+                click={this.nameSort}
+                btnText="Sort by Last Name"
+                value="lastName"
+              />
+            </FilterButtonWrapper>
 
-            ))}
-          </TableWrapper>
+
+            <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
+            <FilterButtonWrapper>
+              <FilterButton
+                // list={departmentsList}
+                click={this.departmentFilter}
+                value="all"
+                btnText="Show Everyone"
+              />
+              <FilterButton
+                // list={departmentsList}
+                click={this.departmentFilter}
+                value="Finance"
+                btnText="Show Only Finance"
+              />
+              <FilterButton
+                // list={departmentsList}
+                click={this.departmentFilter}
+                value="C-Suite"
+                btnText="Show Only C-Suite"
+              />
+              <FilterButton
+                // list={departmentsList}
+                click={this.departmentFilter}
+                value="HR"
+                btnText="Show Only HR"
+              />
+            </FilterButtonWrapper>
+            <TableWrapper>
+              {this.state.filterObject.map(employee => (
+                <EmployeeCard
+                  key={employee.id}
+                  firstName={employee.firstName}
+                  lastName={employee.lastName}
+                  department={employee.department}
+                  title={employee.title}
+                  birthday={employee.birthday}
+                  salary={employee.salary}
+                />
+
+              ))}
+            </TableWrapper>
+          </div>
         </Wrapper>
       </div>
     );

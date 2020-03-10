@@ -7,10 +7,6 @@ import './style.css'
 // need to get from the props: the array of different departments, then I'll do a map function to create the options
 
 function FilterButton(props) {
-  // console.log(props.list)
-  // console.log(props.filterType)
-
-
   return (
     <div
       className="btn btn-filter"
