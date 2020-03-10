@@ -81,48 +81,56 @@ class App extends Component {
           <div className="container">
 
             <h1 style={{ textAlign: "center", marginTop: 25, marginBottom: 25 }}>Employees: At a Glance</h1>
-            <h2 style={{ textAlign: "center" }}>Sort</h2>
-            <FilterButtonWrapper>
-              <FilterButton
-                click={this.nameSort}
-                btnText="Reset Sort"
-                value="showAll"
-              />
-              <FilterButton
-                click={this.nameSort}
-                btnText="Sort by Last Name"
-                value="lastName"
-              />
-            </FilterButtonWrapper>
+
+            <div className="row">
+              <div className="col-sm-8" style={{ borderRight: "1px solid #000000" }}>
+                <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
+                <FilterButtonWrapper>
+                  <FilterButton
+                    click={this.departmentFilter}
+                    value="all"
+                    btnText="Show Everyone"
+                  />
+                  <FilterButton
+                    click={this.departmentFilter}
+                    value="Finance"
+                    btnText="Show Only Finance"
+                  />
+                  <FilterButton
+                    click={this.departmentFilter}
+                    value="C-Suite"
+                    btnText="Show Only C-Suite"
+                  />
+                  <FilterButton
+                    click={this.departmentFilter}
+                    value="HR"
+                    btnText="Show Only HR"
+                  />
+                </FilterButtonWrapper>
+              </div>
+              <div className="col-sm-4">
+                <h2 style={{ textAlign: "center" }}>Sort</h2>
+                <FilterButtonWrapper>
+                  <FilterButton
+                    click={this.nameSort}
+                    btnText="Reset Sort"
+                    value="showAll"
+                  />
+                  <FilterButton
+                    click={this.nameSort}
+                    btnText="Sort by Last Name"
+                    value="lastName"
+                  />
+                </FilterButtonWrapper>
 
 
-            <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
-            <FilterButtonWrapper>
-              <FilterButton
-                // list={departmentsList}
-                click={this.departmentFilter}
-                value="all"
-                btnText="Show Everyone"
-              />
-              <FilterButton
-                // list={departmentsList}
-                click={this.departmentFilter}
-                value="Finance"
-                btnText="Show Only Finance"
-              />
-              <FilterButton
-                // list={departmentsList}
-                click={this.departmentFilter}
-                value="C-Suite"
-                btnText="Show Only C-Suite"
-              />
-              <FilterButton
-                // list={departmentsList}
-                click={this.departmentFilter}
-                value="HR"
-                btnText="Show Only HR"
-              />
-            </FilterButtonWrapper>
+              </div>
+
+
+            </div>
+
+
+
             <TableWrapper>
               {this.state.filterObject.map(employee => (
                 <EmployeeCard
