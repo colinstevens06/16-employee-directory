@@ -26,6 +26,35 @@ class App extends Component {
     }
   }
 
+  nameSort = (input) => {
+    const employees = this.state.filterObject;
+
+    if (input === "lastName") {
+      const sortedEmployees = employees.sort(function (a, b) {
+        if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+          return -1
+        } else if (b.lastName.toLowerCase() < a.lastName.toLowerCase()) {
+          return 1
+        } else {
+          return 0
+        }
+      })
+      this.setState({ filterObject: sortedEmployees })
+    } else {
+      const sortedEmployees = employees.sort(function (a, b) {
+        if (a.id < b.id) {
+          return -1
+        } else if (b.id < a.id) {
+          return 1
+        } else {
+          return 0
+        }
+      })
+      this.setState({ filterObject: sortedEmployees })
+    }
+
+  }
+
   onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
   }
@@ -53,29 +82,44 @@ class App extends Component {
     return (
       <div className="App">
         <Wrapper>
+          <h2 style={{ textAlign: "center" }}>Sort</h2>
+          <FilterButtonWrapper>
+            <FilterButton
+              click={this.nameSort}
+              btnText="Reset Sort"
+              value="showAll"
+            />
+            <FilterButton
+              click={this.nameSort}
+              btnText="Sort by Last Name"
+              value="lastName"
+            />
+          </FilterButtonWrapper>
+
+
           <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
-          <FilterButtonWrapper style={{ justifyContent: "space-around" }}>
+          <FilterButtonWrapper>
             <FilterButton
               list={departmentsList}
-              departmentFilter={this.departmentFilter}
+              click={this.departmentFilter}
               value="all"
               btnText="Show Everyone"
             />
             <FilterButton
               list={departmentsList}
-              departmentFilter={this.departmentFilter}
+              click={this.departmentFilter}
               value="Finance"
               btnText="Show Only Finance"
             />
             <FilterButton
               list={departmentsList}
-              departmentFilter={this.departmentFilter}
+              click={this.departmentFilter}
               value="C-Suite"
               btnText="Show Only C-Suite"
             />
             <FilterButton
               list={departmentsList}
-              departmentFilter={this.departmentFilter}
+              click={this.departmentFilter}
               value="HR"
               btnText="Show Only HR"
             />

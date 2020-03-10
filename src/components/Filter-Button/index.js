@@ -14,7 +14,7 @@ function FilterButton(props) {
   return (
     <div
       className="btn btn-filter"
-      onClick={() => props.departmentFilter(props.value)}
+      onClick={() => props.click(props.value)}
 
     >{props.btnText}</div>
   )
