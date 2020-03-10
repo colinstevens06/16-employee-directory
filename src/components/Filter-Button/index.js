@@ -12,12 +12,11 @@ function FilterButton(props) {
 
 
   return (
-    <form>
-      <div
-        className="btn btn-primary"
-        onClick={() => props.departmentFilter("Finance")}
-      >Show Only Finance</div>
-    </form>
+    <div
+      className="btn btn-filter"
+      onClick={() => props.departmentFilter(props.value)}
+
+    >{props.btnText}</div>
   )
 }
 

@@ -3,6 +3,7 @@ import Wrapper from './components/Wrapper'
 import EmployeeCard from './components/Employee-Card'
 import TableWrapper from './components/Table-Wrapper'
 import FilterButton from './components/Filter-Button'
+import FilterButtonWrapper from './components/Filter-Button-Wrapper'
 import employees from './employees.json'
 import './App.css';
 
@@ -17,14 +18,21 @@ class App extends Component {
 
 
   departmentFilter = dept => {
+    switch (dept) {
+      case "Finance":
+        const employees = this.state.employees.filter(employee => employee.department === dept)
+        this.setState({ ...this.state, filterObject: employees })
+        break
+      default:
+        this.setState({ filterObject: this.state.employees })
+    }
+
+
+
 
 
     if (dept !== "all") {
-
-
       const employees = this.state.employees.filter(employee => employee.department === dept)
-
-
       this.setState({ ...this.state, filterObject: employees })
     } else {
       this.setState({ employees })
@@ -34,8 +42,6 @@ class App extends Component {
   onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
   }
-
-  // const departments = "abc";
 
   departmentList = () => {
     let departments = []
@@ -60,13 +66,34 @@ class App extends Component {
     return (
       <div className="App">
         <Wrapper>
-          <Button-Wrapper>
+          <h2 style={{ textAlign: "center" }}>Filter By Department</h2>
+          <FilterButtonWrapper style={{ justifyContent: "space-around" }}>
             <FilterButton
               list={departmentsList}
               departmentFilter={this.departmentFilter}
+              value="all"
+              btnText="Show Everyone"
+            />
+            <FilterButton
+              list={departmentsList}
+              departmentFilter={this.departmentFilter}
+              value="Finance"
+              btnText="Show Only Finance"
+            />
+            <FilterButton
+              list={departmentsList}
+              departmentFilter={this.departmentFilter}
+              value="C-Suite"
+              btnText="Show Only C-Suite"
+            />
+            <FilterButton
+              list={departmentsList}
+              departmentFilter={this.departmentFilter}
+              value="HR"
+              btnText="Show Only HR"
             />
             {/* <FilterButton /> */}
-          </Button-Wrapper>
+          </FilterButtonWrapper>
           <TableWrapper>
             {this.state.filterObject.map(employee => (
               <EmployeeCard
