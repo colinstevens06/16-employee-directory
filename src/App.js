@@ -18,24 +18,11 @@ class App extends Component {
 
 
   departmentFilter = dept => {
-    switch (dept) {
-      case "Finance":
-        const employees = this.state.employees.filter(employee => employee.department === dept)
-        this.setState({ ...this.state, filterObject: employees })
-        break
-      default:
-        this.setState({ filterObject: this.state.employees })
-    }
-
-
-
-
-
     if (dept !== "all") {
       const employees = this.state.employees.filter(employee => employee.department === dept)
       this.setState({ ...this.state, filterObject: employees })
     } else {
-      this.setState({ employees })
+      this.setState({ filterObject: this.state.employees })
     }
   }
 
