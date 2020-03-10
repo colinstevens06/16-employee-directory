@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: sans-serif;
+  
 }
 
 html, body, #root {
@@ -22,6 +23,7 @@ html, body {
 .main-header {
   text-align: center;
   margin: auto;
+  font-family: 'Nunito Sans', sans-serif;
   /* display: flex; */
 }
 
@@ -40,4 +42,6 @@ html, body {
 
 .filter-header {
   font-size: 22px;
+  font-family: 'Nunito Sans', sans-serif;
+
 }
