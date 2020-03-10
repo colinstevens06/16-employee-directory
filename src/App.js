@@ -16,7 +16,6 @@ class App extends Component {
     toggleSort: ""
   }
 
-
   departmentFilter = dept => {
     if (dept !== "all") {
       const employees = this.state.employees.filter(employee => employee.department === dept)
@@ -43,6 +42,7 @@ class App extends Component {
         this.setState({ filterObject: employees })
         break
       case "Salary":
+        // setting it up so you can switch the sort from large to small and small to large
         if (employees[0].salary < employees[employees.length - 1].salary) {
           employees.sort(function (a, b) {
             if (a.salary < b.salary) {
@@ -81,25 +81,7 @@ class App extends Component {
     }
   }
 
-  onlyUnique = (value, index, self) => {
-    return self.indexOf(value) === index;
-  }
-
-  departmentList = () => {
-    let departments = []
-    employees.forEach(employee => {
-      departments.push(employee)
-    });
-
-    let filteredDepartments = departments.filter(this.onlyUnique())
-
-    return filteredDepartments;
-
-  }
-
   render() {
-    // let departmentsList = this.departmentList
-
     return (
       <div className="App">
         <Wrapper>
